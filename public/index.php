@@ -56,3 +56,6 @@ $response = $kernel->handle(
 $response->send();
 
 $kernel->terminate($request, $response);
+
+//var_dump($_ENV['MINHA_CHAVE']);
+//var_dump(getenv('MINHA_CHAVE'));
