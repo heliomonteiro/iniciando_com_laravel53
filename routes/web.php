@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Http\Request;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -33,3 +35,28 @@ Route::get('minharota/rota1.php', function () {
 Route::get('client/{id}/{name?}', function($id, $name = 'Fulano'){
 	return "Client $id, $name";
 });
+
+
+//Rota de formulário e roda de retorno com mesmo nome. O laravel os diferenciará pelo verbo HTTP.
+Route::get('client', function () {
+	$csrfToken = csrf_token(); // helper laravel para gerar o token.
+	$action = route('client.store');
+	//string com o codigo html.
+	$html = <<<HTML
+	<html>
+		<body>
+			<form method="post" action="$action">
+				<input type="hidden" name="_token" value="$csrfToken"/>
+				<input type="text" name="value"/>
+				<button type="submit">Enviar</button>
+			</form>
+		</body>
+	</html>			
+HTML;
+
+	return $html;
+});
+
+Route::post('cliente', function(Request $request){
+	return $request->get('value');
+})->name('client.store'); //aqui foi utilizado uma rota nomeada.

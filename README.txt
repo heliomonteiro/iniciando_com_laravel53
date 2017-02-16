@@ -95,6 +95,26 @@ $route = Route::current();
 $name = Route::currentRouteName();
 $action = Route::currentRouteAction();
 
-----------------
+-------------------------
+Rotas, post e formularios
+-------------------------
 
-----------------
+//Delimitador string de várias linhas
+$html = <<<HTML
+	<html>
+		<body>
+			<form>
+			...
+			</form>
+		</body>
+	</html>
+HTML;
+
+//Rotas com mesmo nome
+Rota de formulário e rota de retorno com mesmo nome. O laravel os diferenciará pelo verbo HTTP.
+
+//Sobre o csrf Token
+O laravel sempre procura pelo campo com name _token e o valor do csrfToken() em requisições POST, PUT e DELETE.
+
+//Rota nomeada
+Útil para manutenibilidade futura, caso a rota física seja mudada. Não será necessário procurar e mudar todos os lugares que chamam esta rota.
