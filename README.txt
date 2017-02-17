@@ -179,4 +179,23 @@ transportar um conjunto de um lugar para conseguir mostrar. Em outras palavras, 
 //Por tras dos panos
 O Blade pega a view e gera um novo código php. Localizado na pasta 'Storage/framewoerk/views';
 
-------------
+--------------------------------
+Um pouco mais sobre interpolação
+---------------------------------
+Com o blade pode ser utilizado as mesmas operações do php. Quando for imprimir codigo html, deve ser utilizado a forma de interpolação escaped.
+O blade apresenta uma forma pratica de utilizar operador ternario.
+
+<p>{{ 2 + 2 }}</p>
+<p>{{ $name . " Júnior"}}</p>
+
+//Operador ternario
+<p>{{ isset($conteudo) ? $conteudo : "Varivável não existe" }}</p>
+<p>{{ $conteudo or 'Variavel não existe' }}</p>
+
+//interpolacao segura - htmlentities do php - interpolacao unescaped
+<p> {{ "<a href='#'>Link</a>" }} </p>
+
+//interpolacao real - interpolacao scaped
+<p> {!! "<a href='#'>Link</a>" !!} </p>
+
+----------------------------

@@ -45,7 +45,8 @@ Route::get('client', function () {
 Route::get('client/{id}/{name?}', function($id, $name = 'Fulano'){
 	return view('client-name')
 	->with('id', $id)
-	->with('name', $name);
+	->with('name', $name)
+	->with('conteudo', 'teste');
 	/*return view('client-name', [
 		'id' => $id,
 		'name' => $name
