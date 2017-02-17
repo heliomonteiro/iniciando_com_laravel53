@@ -192,10 +192,72 @@ O blade apresenta uma forma pratica de utilizar operador ternario.
 <p>{{ isset($conteudo) ? $conteudo : "Varivável não existe" }}</p>
 <p>{{ $conteudo or 'Variavel não existe' }}</p>
 
-//interpolacao segura - htmlentities do php - interpolacao unescaped
+//interpolacao segura - htmlentities do php - interpolacao escaped
 <p> {{ "<a href='#'>Link</a>" }} </p>
 
-//interpolacao real - interpolacao scaped
+//interpolacao real - interpolacao unescaped
 <p> {!! "<a href='#'>Link</a>" !!} </p>
 
-----------------------------
+--------------------------------------------
+BLADE - Estruturas condicionais e repetição
+--------------------------------------------
+//COMENTARIOS
+{{-- Este é um comentário --}}
+
+//CODIGO PHP
+<?php $var = 10; ?>
+
+ou
+
+@php
+$var = 10;
+@endphp
+
+//ESTRUTURAS DE CONTROLE
+
+//IF
+@if (count($records) === 1)
+    I have one record!
+@elseif (count($records) > 1)
+    I have multiple records!
+@else
+    I don't have any records!
+@endif
+//por conveniencia existe o unless
+@unless (Auth::check())
+    You are not signed in.
+@endunless
+
+//LOOPS
+@for ($i = 0; $i < 10; $i++)
+    The current value is {{ $i }}
+@endfor
+
+@foreach ($users as $user)
+    <p>This is user {{ $user->id }}</p>
+@endforeach
+
+@forelse ($users as $user)
+    <li>{{ $user->name }}</li>
+@empty
+    <p>No users</p>
+@endforelse
+
+@while (true)
+    <p>I'm looping forever.</p>
+@endwhile
+
+//conveniencia no loop
+Existe a variável loop à qual podemos acessar alguns atributos do loop atual. Tais como index, iteration, remaining, count, first, last, depth, parent.
+
+@foreach ($users as $user)
+    @if ($loop->first)
+        This is the first iteration.
+    @endif
+
+    @if ($loop->last)
+        This is the last iteration.
+    @endif
+
+    <p>This is user {{ $user->id }}</p>
+@endforeach

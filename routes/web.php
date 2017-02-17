@@ -56,3 +56,7 @@ Route::get('client/{id}/{name?}', function($id, $name = 'Fulano'){
 Route::post('cliente', function(Request $request){
 	return $request->get('value');
 })->name('client.store'); //aqui foi utilizado uma rota nomeada.
+
+Route::get('if-for', function() {
+	return view('if-for');
+});
