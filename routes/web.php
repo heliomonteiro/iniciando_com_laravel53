@@ -21,8 +21,13 @@ Route::get('minharota', function () {
 	return "Hello minha rota!";
 });
 
+//retornando uma view - modo correto - separa a responsabilidade da view e da rota.
+Route::get('minharota.php', function() {
+	return view('helloworld');
+});
+
 Route::get('minharota/rota1', function () {
-	return "Hello minha rota! - Rota 1";
+	return view('helloworld1');
 });
 
 //nada impede de enganar o usuario com um nome semelhante à um arquivo
@@ -30,31 +35,21 @@ Route::get('minharota/rota1.php', function () {
 	return "Hello minha rota! - Rota 1";
 });
 
+//Rota de formulário e rota de retorno com mesmo nome. O laravel os diferenciará pelo verbo HTTP.
+Route::get('client', function () {
+	return view('client');
+});
+
 //rota com parametro
 //colocar ? para parametro opcional
 Route::get('client/{id}/{name?}', function($id, $name = 'Fulano'){
-	return "Client $id, $name";
-});
-
-
-//Rota de formulário e roda de retorno com mesmo nome. O laravel os diferenciará pelo verbo HTTP.
-Route::get('client', function () {
-	$csrfToken = csrf_token(); // helper laravel para gerar o token.
-	$action = route('client.store');
-	//string com o codigo html.
-	$html = <<<HTML
-	<html>
-		<body>
-			<form method="post" action="$action">
-				<input type="hidden" name="_token" value="$csrfToken"/>
-				<input type="text" name="value"/>
-				<button type="submit">Enviar</button>
-			</form>
-		</body>
-	</html>			
-HTML;
-
-	return $html;
+	return view('client-name')
+	->with('id', $id)
+	->with('name', $name);
+	/*return view('client-name', [
+		'id' => $id,
+		'name' => $name
+		]);*/
 });
 
 Route::post('cliente', function(Request $request){

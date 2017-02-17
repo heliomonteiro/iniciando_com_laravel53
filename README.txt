@@ -118,3 +118,45 @@ O laravel sempre procura pelo campo com name _token e o valor do csrfToken() em 
 
 //Rota nomeada
 Útil para manutenibilidade futura, caso a rota física seja mudada. Não será necessário procurar e mudar todos os lugares que chamam esta rota.
+
+------
+Views
+------
+Importante lembrar que o arquivo de rotas serve para escrever e organizar as rotas. Portanto, ficar escrevendo codigos html para retorno deixa o código bem grande. Por isso, criar uma view separado.
+
+Invés de:
+Route::get('minharota', function () {
+	return "Hello minha rota!";
+});
+
+Usar:
+//retornando uma view - modo correto - separa a responsabilidade da view e da rota.
+Route::get('minharota', function() {
+	return view('helloworld');
+});
+
+Por padrão, o laravel procura no diretório 'resources/views/' pelo nome da view.
+
+//Envio de dados para a view
+return view('greetings', ['name' => 'Victoria']);
+ou
+return view('greeting')->with('name', 'Victoria');
+
+Ex.:
+Route::get('client/{id}/{name?}', function($id, $name = 'Fulano'){
+	return view('client-name')
+	->with('id',$id)
+	->with('name', $name);
+	/*return view('client-name', [
+		'id' => $id,
+		'name' => $name
+		]);*/
+});
+
+//Acessando os dados pela view
+<?php echo $id; ?>
+<?php echo $name; ?>
+
+
+//Retornar view em um diretorio dentro do diretorio views. Lembrar de separar por pontos cada diretorio.
+return view('admin.profile', $data);
