@@ -261,3 +261,12 @@ Existe a variável loop à qual podemos acessar alguns atributos do loop atual. 
 
     <p>This is user {{ $user->id }}</p>
 @endforeach
+
+---------
+ARTISAN
+---------
+php -S localhost:8000 -t public public/index.php
+//root é a pasta public
+//todas as requisições redirecionadas para public/index.php
+//Corresponde à
+php artisan serve
