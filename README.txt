@@ -160,3 +160,23 @@ Route::get('client/{id}/{name?}', function($id, $name = 'Fulano'){
 
 //Retornar view em um diretorio dentro do diretorio views. Lembrar de separar por pontos cada diretorio.
 return view('admin.profile', $data);
+
+------
+Blade
+------
+Utilizamos o arquivo de rotas para rotas e view para html, porém ainda misturamos o codigo html com php. Porquê não utilizar uma template engine para dar este suporte?
+O blade permite uma forma mais clara de usar codigos php sem poluir o codigo html.
+
+Agora o nome de nossas view vao ter o prefixo .blade acrescidos antes da extensao .php
+
+Na chamada do nome da view:
+view('welcome')
+O laravel procura por .php ou .blade.php, não é preciso preocupar com isso :D
+
+//INTERPOLAÇÃO
+transportar um conjunto de um lugar para conseguir mostrar. Em outras palavras, tornar funções complexas em algo mais simples.
+
+//Por tras dos panos
+O Blade pega a view e gera um novo código php. Localizado na pasta 'Storage/framewoerk/views';
+
+------------
