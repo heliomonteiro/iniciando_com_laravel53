@@ -270,3 +270,19 @@ php -S localhost:8000 -t public public/index.php
 //todas as requisições redirecionadas para public/index.php
 //Corresponde à
 php artisan serve
+
+O artisan é um console que oferece várias facilidades como esta.
+Outras sao para criar alguns elementos como filas, models, controllers;
+listar as rotas da aplicação, útil para vc entender as rotas de uma aplicação que já está em desenvolvimento em equipe;
+Gerar key da aplicação;
+E outras tarefas cotidiana.
+
+------------
+CONTROLLERS
+------------
+php artisan make:controller ClientsController
+
+//Diretorios
+App -> Onde fica todo codigo fonte da aplicação, excluindo as views.
+App/Http/Controllers -> onde fica os controllers
+

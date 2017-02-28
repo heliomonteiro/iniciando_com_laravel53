@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('client', 'ClientsController@create');
+
+Route::post('cliente', 'ClientsController@store')->name('client.store');
+
+/*
 Route::get('minharota', function () {
 	return "Hello minha rota!";
 });
@@ -47,10 +52,10 @@ Route::get('client/{id}/{name?}', function($id, $name = 'Fulano'){
 	->with('id', $id)
 	->with('name', $name)
 	->with('conteudo', 'teste');
-	/*return view('client-name', [
-		'id' => $id,
-		'name' => $name
-		]);*/
+	//return view('client-name', [
+	//	'id' => $id,
+	//	'name' => $name
+	//	]);
 });
 
 Route::post('cliente', function(Request $request){
@@ -60,3 +65,4 @@ Route::post('cliente', function(Request $request){
 Route::get('if-for', function() {
 	return view('if-for');
 });
+*/
