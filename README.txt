@@ -315,3 +315,24 @@ class ClientsController extends Controller
 --------------------
 Agrupamento de rotas
 --------------------
+
+Podemos utilizar o método group para agrupar rotas adicionando um prefixo na sua url. Este prefixo também pode ser inserido no nome da rota através do parametro 'as'.
+
+Ex.:
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
+	Route::get('client', 'ClientsController@create');
+	Route::post('cliente', 'ClientsController@store')->name('client.store');
+	//novo nome da rota é admin.client.store;
+});
+
+Route::group(['prefix' => '', 'as' => 'site.'], function(){
+	Route::get('client', 'SiteClientsController@create');
+	Route::post('cliente', 'SiteClientsController@store')->name('client.store');
+	//novo nome da rota é site.client.store
+});
+
+--------------------------------
+Models, Migration e Eloquent ORM
+--------------------------------
+

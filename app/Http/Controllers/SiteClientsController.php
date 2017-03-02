@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ClientsController extends Controller
+class SiteClientsController extends Controller
 {
     public function create(){
-    	return view('admin.client.client');
+    	return view('site.client');
     }
 
     public function store(Request $request){
