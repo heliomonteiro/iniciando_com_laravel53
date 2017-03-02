@@ -286,3 +286,32 @@ php artisan make:controller ClientsController
 App -> Onde fica todo codigo fonte da aplicação, excluindo as views.
 App/Http/Controllers -> onde fica os controllers
 
+Quando utilizar closure e quando utilizar controller nas rotas?
+Utilizar controller para centralizar várias ações. Exemplo: CRUD todas as ações em um controller.
+Quando for uma rota para apenas um retorno simples, pode ser utilizado uam closure.
+
+EX.:
+--rotas--
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('client', 'ClientsController@create');
+
+Route::post('cliente', 'ClientsController@store')->name('client.store');
+
+--ClientsController--
+class ClientsController extends Controller
+{
+    public function create(){
+    	return view('client');
+    }
+
+    public function store(Request $request){
+    	return $request->get('value');
+    }
+}
+
+--------------------
+Agrupamento de rotas
+--------------------
