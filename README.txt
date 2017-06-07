@@ -367,6 +367,85 @@ php artisan make:model User --migration
 //ou
 php artisan make:model User -m
 
+
 --------------------------------
 Trabalhando com migrations
+--------------------------------
+//make:migration cria a migração na pasta database/migrations
+php artisan make:migration create_users_table
+
+//especificando a model
+php artisan make:migration create_users_table --create=users
+
+//especificando a tabela
+php artisan make:migration add_votes_to_users_table --table=users
+
+O método up refere-se ao make:migration e o down ao migrate:rollback
+
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateFlightsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('flights', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('airline');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('flights');
+    }
+}
+
+//CONFERINDO A EXISTENCIA DE UMA TABELA OU COLUNA
+if (Schema::hasTable('users')) {
+    //
+}
+
+if (Schema::hasColumn('users', 'email')) {
+    //
+}
+
+//DEFININDO A CONEXAO
+Schema::connection('foo')->create('users', function (Blueprint $table) {
+    $table->increments('id');
+});
+
+//DEFININDO A ENGINE
+Schema::create('users', function (Blueprint $table) {
+    $table->engine = 'InnoDB';
+
+    $table->increments('id');
+});
+
+//RENOMEANDO TABELA
+Schema::rename($from, $to);
+
+//DROPANDO TABELA
+Schema::drop('users');
+
+Schema::dropIfExists('users');
+
+
+--------------------------------
+Artisan Tinker
 --------------------------------
