@@ -335,4 +335,38 @@ Route::group(['prefix' => '', 'as' => 'site.'], function(){
 --------------------------------
 Models, Migration e Eloquent ORM
 --------------------------------
+A model criada será extendida da classe illuminate\Datagase\Eloquent\Model
 
+Por convensão o nome da classe fica no plural e ele associará a classe á tabela com o mesmo nome no plural.
+Ex.: classe Flight -> tabela flights.
+Ou pode ser setado manualmente a tabela correspondente criando uma variavel protected com o nome $table para definir a tabela no banco de dados.
+
+EX.:
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Flight extends Model
+{
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'my_flights';
+}
+
+
+//GERANDO UMA MODEL
+php artisan make:model User //classe singular, inicial maiuscula para padrao do laravel
+
+//GERANDO UMA MODEL COM MIGRATION
+php artisan make:model User --migration
+//ou
+php artisan make:model User -m
+
+--------------------------------
+Trabalhando com migrations
+--------------------------------
