@@ -449,3 +449,29 @@ Schema::dropIfExists('users');
 --------------------------------
 Artisan Tinker
 --------------------------------
+repl - read eval print loop
+
+php artisan tinker - abre o terminal tinker
+
+funciona comandos php e utiliza pode ser utilizado todos os recursos da App. Para testar podemos por exemplo:
+
+criar um objeto do tipo Client que se encontra na App.
+
+//NOVA INSTANCIA DE UMA MODEL
+$client = new \App\Client();
+
+//ACESSANDO OS ELEMENTOS
+$client->name = "Helio Monteiro";
+$client->address = "Rua x";
+
+//METODOS DO ELOQUENT
+$client->save();        //SALVA NO BANCO
+\App\Client::all();     //RETORNA TODOS ELEMENTOS DO BANCO
+
+$clientTeste = \App\Client::find(); //BUSCA POR ID
+
+$clientTeste->delete();         //DELETA OBJETO NO BANCO
+
+--------------------------------
+Mass Assignment e fillable
+--------------------------------
