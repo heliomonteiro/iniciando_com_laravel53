@@ -451,6 +451,8 @@ Artisan Tinker
 --------------------------------
 repl - read eval print loop
 
+OBS.: Se fizer alteração na aplicação, deve ser reiniciado o tinker para usufruir da alteração.
+
 php artisan tinker - abre o terminal tinker
 
 funciona comandos php e utiliza pode ser utilizado todos os recursos da App. Para testar podemos por exemplo:
@@ -474,4 +476,25 @@ $clientTeste->delete();         //DELETA OBJETO NO BANCO
 
 --------------------------------
 Mass Assignment e fillable
+--------------------------------
+coc
+convention of configuration
+
+Sobrescrevendo a variavel $fillable conseguimos especificar quais campos da tabela serão acessíveis. Evitando inserções indevidas por exemplo.
+
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Client extends Model
+{
+    protected $fillable = [
+        'name', 'address'
+    ];
+}
+
+--------------------------------
+Listando Clientes
 --------------------------------
