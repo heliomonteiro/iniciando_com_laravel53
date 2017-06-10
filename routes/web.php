@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['prefix' => 'eloquent', 'as' => 'eloquent.'], function(){
+	Route::get('clients', 'EloquentClientsController@index')->name('client.list');
+	Route::get('clients/create', 'EloquentClientsController@create')->name('client.create');
+	Route::post('clients/store', 'EloquentClientsController@store')->name('client.store');
+
+});
+
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
 	Route::get('client', 'ClientsController@create');
 	Route::post('cliente', 'ClientsController@store')->name('client.store');

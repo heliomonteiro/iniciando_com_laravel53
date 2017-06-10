@@ -496,5 +496,49 @@ class Client extends Model
 }
 
 --------------------------------
-Listando Clientes
+Listando Clientes e Cadastrando
 --------------------------------
+
+//ROTA
+Route::group(['prefix' => 'eloquent', 'as' => 'eloquent.'], function(){
+    Route::get('clients', 'EloquentClientsController@index')->name('client.list');
+    Route::get('clients/create', 'EloquentClientsController@create')->name('client.create');
+    Route::post('clients/store', 'EloquentClientsController@store')->name('client.store');
+
+});
+
+//CONTROLLER
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Client;
+
+class EloquentClientsController extends Controller
+{
+    public function index(){
+
+        $clients = Client::all();
+
+        return view('eloquent.index', [
+            'clients' => $clients
+        ]);
+    }
+
+    public function create(){
+        return view('eloquent.create');
+    }
+
+    public function store(Request $request){
+        $client = new Client();
+        $client->create($request->all());
+        return redirect()->route('eloquent.client.list');
+    }
+}
+
+//APONTANDO UM LINK PARA UMA ROTA
+    <a href="{{ route('eloquent.client.create') }}"> Criar novo cliente</a>
+
+//REDIRECT
+        return redirect()->route('eloquent.client.list');
